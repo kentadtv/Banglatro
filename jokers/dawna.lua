@@ -25,14 +25,29 @@ SMODS.Joker({
         name = "Dawna",
         text = {
             'Dawna',
-            'TBA'
+            -- 'Gives {X:mult,C:white}X1{} Mult for each Beat Banger Girl',
+            'Currently {X:mult,C:white}X#1#{}'
         }
     },
+    config = {
+        extra = {
+            Xmult = 1.5,
+        },
+    },
+    loc_vars = function(self, info_queue, center)
+
+
+
+        return {vars = {center.ability.extra.Xmult}}
+    end,
     calculate = function(self, center, context)
         if context.joker_main then
+
+
             return {
                 sound = 'BeatBanger_sfx_dawna_moan',
                 message = "MMmhhh~!",
+                Xmult_mod = center.ability.extra.Xmult,
                 colour = G.C.MULT,
             }
         end

@@ -7,7 +7,7 @@ if SMODS.Atlas then
     })
 end
 
-local function load_joker(file)
+local function import(file)
     local chunk, err = SMODS.load_file(file, "BeatBanger")
     if chunk then
         local ok, func = pcall(chunk)
@@ -18,9 +18,9 @@ local function load_joker(file)
 end
 
 
-load_joker('jokers/zoe.lua')
-load_joker('jokers/dawna.lua')
-load_joker('jokers/claire.lua')
-load_joker('jokers/gale.lua')
-load_joker('jokers/cathy.lua')
+import('jokers/zoe.lua')
+import('jokers/dawna.lua')
+import('jokers/claire.lua')
+import('jokers/gale.lua')
+import('jokers/cathy.lua')
 
