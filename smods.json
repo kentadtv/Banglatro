@@ -1,0 +1,10 @@
+{
+	"id": "BeatBanger",
+	"name": "BeatBanger",
+	"display_name": "",
+	"author": ["KentaDTV", "Bunfan Games"],
+	"description": "Sexy Ladies",
+	"prefix": "BeatBanger",
+	"main_file": "core.lua",
+	"version": "1.0"
+}

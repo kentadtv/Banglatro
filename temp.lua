@@ -1,0 +1,12 @@
+-- function get_sub_count()
+--     local sub_count
+--     local file = io.open("subcount.txt", "r")
+--     if file then
+--         local line = file:read("*l")
+--         file:close()
+--         return tonumber(line)
+--     else
+--         print("Could not open the file")
+--         return 1
+--     end
+-- end

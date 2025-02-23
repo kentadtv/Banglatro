@@ -1,2 +1,2 @@
 # Banglatro
-A Beat BAnger Balatro Mod!
+A Beat Banger Balatro Mod!
