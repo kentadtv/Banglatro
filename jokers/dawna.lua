@@ -1,6 +1,6 @@
 SMODS.Atlas({
-	key = "j_dawna",
-	path = "j_dawna.png",
+	key = "j_beat_banger",
+	path = "joker_atlas.png",
 	px = 71,
 	py = 95,
 })
@@ -12,7 +12,8 @@ SMODS.Sound({
 
 SMODS.Joker({
 	key = "j_dawna",
-	atlas = "j_dawna",
+	atlas = "j_beat_banger",
+    pos = { x = 5, y = 0 },
 	rarity = 1,
 	cost = 8,
 	unlocked = true,
@@ -28,12 +29,27 @@ SMODS.Joker({
     loc_txt = {
         name = "Dawna",
         text = {
-            'Dawna',
-            'Gives {C:chips}+#1#{} Mult',
+            'G-Milf Sheep',
+            'Gives {C:chips}+50{} chips for each Beat Banger joker',
+            'Currently {C:chips}+#1#{}',
         }
     },
     loc_vars = function(self, info_queue, card)
-        return {vars = {card.ability.extra.Xmult}}
+        return {vars = {card.ability.extra.chips}}
+    end,
+    update = function(self, card, dt)
+        if G.STAGE == G.STAGES.RUN then
+            if card.ability.name ~= "j_BeatBanger_j_dawna" then return end
+            
+            local bb_cards = 0
+            for k, v in pairs(G.jokers.cards) do
+                if not v.config.center.mod then break end
+                local joker_mod_id = v.config.center.mod.id
+                if joker_mod_id == "BeatBanger" then bb_cards = bb_cards + 1 end
+            end
+
+            card.ability.extra.chips = bb_cards * 50
+        end
     end,
     calculate = function(self, card, context)
         if context.joker_main then

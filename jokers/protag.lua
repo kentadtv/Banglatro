@@ -1,6 +1,6 @@
 SMODS.Atlas({
-	key = "j_protag",
-	path = "j_protag.png",
+	key = "j_beat_banger",
+	path = "joker_atlas.png",
 	px = 71,
 	py = 95,
 })
@@ -20,29 +20,43 @@ SMODS.Joker({
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = true,
+    config = {
+        extra = {
+            mult = 0,
+        },
+    },
     loc_txt = {
         name = "The Protagonist",
         text = {
             "It's You!",
-            'Gain +4 mult for each Beat Banger joker'
+            'Gain {C:mult}+1{} mult for each Beat Banger joker',
+            'Currently {C:mult}+#1#{}'
         }
     },
-    calculate = function(self, card, context)
-
-        local mult = 0
-        for k, v in pairs(G.jokers.cards) do
-            local joker_name = v.config.card.name
-            if string.sub(joker_name,1,6) == "j_Beat" then
-                mult = mult + 4
+    loc_vars = function(self, info_queue, card)
+        return {vars = {card.ability.extra.mult}}
+    end,
+    
+    update = function(self, card, dt)
+        if G.STAGE == G.STAGES.RUN then
+            if card.ability.name ~= "j_BeatBanger_j_protag" then return end
+            
+            local bb_cards = 0
+            for k, v in pairs(G.jokers.cards) do
+                local joker_mod_id = v.config.center.mod.id
+                if joker_mod_id == "BeatBanger" then bb_cards = bb_cards + 1 end
             end
-        end
 
+            card.ability.extra.mult = bb_cards
+        end
+    end,
+    calculate = function(self, card, context)
         if context.joker_main then
             return {
-                message = "8==D + " .. mult,
+                message = "Guh~ + " .. card.ability.extra.mult,
                 Color = G.C.MULT,
                 sound = 'BeatBanger_sfx_boing',
-                Xmult_mod = mult
+                mult_mod = card.ability.extra.mult
             }
         end
     end

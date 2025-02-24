@@ -1,14 +1,16 @@
 SMODS.Atlas({
-	key = "j_jasmine",
-	path = "j_jasmine.png",
+	key = "j_beat_banger",
+	path = "joker_atlas.png",
 	px = 71,
 	py = 95,
 })
 
--- SMODS.Sound({
---     key = "sfx_jasmine_moan",
---     path = "sfx_jasmine_moan.ogg",
--- })
+
+local apply_card_price_offset = function(offset)
+    for k, v in pairs(G.I.CARD) do
+        if v.set_cost then v.cost = v.cost + 3 end
+    end
+end
 
 SMODS.Joker({
 	key = "j_jasmine",
@@ -37,6 +39,8 @@ SMODS.Joker({
     loc_vars = function(self, info_queue, card)
         return {vars = {card.ability.extra.Xmult}}
     end,
+    add_to_deck = function(self, card, from_debuff) apply_card_price_offset(3) end,
+    remove_from_deck = function(self, card, from_debuff) apply_card_price_offset(-3) end,
     calculate = function(self, card, context)
         
         if context.buying_card then

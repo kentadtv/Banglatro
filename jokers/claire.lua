@@ -1,6 +1,6 @@
 SMODS.Atlas({
-	key = "j_claire",
-	path = "j_claire.png",
+	key = "j_beat_banger",
+	path = "joker_atlas.png",
 	px = 71,
 	py = 95,
 })
@@ -15,24 +15,36 @@ SMODS.Joker({
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = true,
+    config = {
+        extra = {
+            dollars = 0,
+        },
+    },
     loc_txt = {
         name = "Business Bunny",
         text = {
             "She's the boss",
             'Gain {C:attention}$1{} for each Beat Banger Card',
             'At the end of the round',
+            'Currently {C:attention}$#1#{}',
         }
     },
-    calc_dollar_bonus = function(self, card)
-        -- Get each Joker
-        local money_amount = 0
-        for k, v in pairs(G.jokers.cards) do
-            local joker_name = v.config.card.name
-            if string.sub(joker_name,1,6) == "j_Beat" then
-                money_amount = money_amount + 1
+    update = function(self, card, dt)
+        if G.STAGE == G.STAGES.RUN then
+            if card.ability.name ~= "j_BeatBanger_j_claire" then return end
+            local dollars = 0
+            for k, v in pairs(G.jokers.cards) do
+                local joker_mod_id = v.config.center.mod.id
+                if joker_mod_id == "BeatBanger" then dollars = dollars + 1 end
             end
-        end
 
-        return money_amount
+            card.ability.extra.dollars = dollars
+        end
+    end,
+    loc_vars = function(self, info_queue, card)
+        return {vars = {card.ability.extra.dollars}}
+    end,
+    calc_dollar_bonus = function(self, card)
+        return card.ability.extra.dollars
     end
 })

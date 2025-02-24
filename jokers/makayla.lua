@@ -35,16 +35,10 @@ SMODS.Joker({
                 local joker_name = v.config.center.name
                 if joker_name == "j_BeatBanger_j_cathy" then
                     return {
-                        message = "Oughh~!",
+                        message = "<3",
                         Color = G.C.MULT,
                         Xmult_mod = 3,
-                        -- sound = 'BeatBanger_sfx_cathy_moan',
                     }  
-                else
-                    return {
-                        message = ":(",
-                        Color = G.C.MULT,
-                    }
                 end
             end
 
