@@ -1,4 +1,7 @@
 # Compiled Lua sources
+_working_files/
+_dev/
+
 luac.out
 
 # luarocks build files

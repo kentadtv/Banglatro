@@ -1,4 +1,3 @@
-
 SMODS.Atlas({
 	key = "j_dawna",
 	path = "j_dawna.png",
@@ -14,41 +13,35 @@ SMODS.Sound({
 SMODS.Joker({
 	key = "j_dawna",
 	atlas = "j_dawna",
-	rarity = 2,
+	rarity = 1,
 	cost = 8,
 	unlocked = true,
 	discovered = true,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = true,
+    config = {
+        extra = {
+            chips = 50,
+        },
+    },
     loc_txt = {
         name = "Dawna",
         text = {
             'Dawna',
-            -- 'Gives {X:mult,C:white}X1{} Mult for each Beat Banger Girl',
-            'Currently {X:mult,C:white}X#1#{}'
+            'Gives {C:chips}+#1#{} Mult',
         }
     },
-    config = {
-        extra = {
-            Xmult = 1.5,
-        },
-    },
-    loc_vars = function(self, info_queue, center)
-
-
-
-        return {vars = {center.ability.extra.Xmult}}
+    loc_vars = function(self, info_queue, card)
+        return {vars = {card.ability.extra.Xmult}}
     end,
-    calculate = function(self, center, context)
+    calculate = function(self, card, context)
         if context.joker_main then
-
-
             return {
                 sound = 'BeatBanger_sfx_dawna_moan',
                 message = "MMmhhh~!",
-                Xmult_mod = center.ability.extra.Xmult,
-                colour = G.C.MULT,
+                chip_mod = card.ability.extra.chips,
+                colour = G.C.CHIPS,
             }
         end
     end

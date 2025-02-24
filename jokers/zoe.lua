@@ -29,14 +29,13 @@ SMODS.Joker({
         name = "Busty Bird",
         text = {
             'Zoe uses her {C:attention}big titties{}',
-            'Gives {X:mult,C:white}X#1#{} Mult for each 8 held in hand'
+            'Gives {X:mult,C:white}X#1#{} Mult for each played 8'
         }
     },
-    loc_vars = function(self, info_queue, center)
-
-        return {vars = {center.ability.extra.Xmult}}
+    loc_vars = function(self, info_queue, card)
+        return {vars = {card.ability.extra.Xmult}}
     end,
-    calculate = function(self, center, context)
+    calculate = function(self, card, context)
         if context.individual and context.cardarea == G.play then
             if context.other_card:get_id() == 8 then
                 return {
@@ -44,7 +43,7 @@ SMODS.Joker({
                         message = "BOING!",
                         sound = 'BeatBanger_sfx_boob',
                         Color = G.C.MULT,
-                        Xmult_mod = center.ability.extra.Xmult,
+                        Xmult_mod = card.ability.extra.Xmult,
                 }
             end
         end    

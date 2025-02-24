@@ -19,15 +19,15 @@ SMODS.Joker({
         name = "Business Bunny",
         text = {
             "She's the boss",
-            'for each Beat Banger Card',
-            'Gain {C:attention}$1{} At the end of the round',
+            'Gain {C:attention}$1{} for each Beat Banger Card',
+            'At the end of the round',
         }
     },
     calc_dollar_bonus = function(self, card)
         -- Get each Joker
         local money_amount = 0
         for k, v in pairs(G.jokers.cards) do
-            local joker_name = v.config.center.name
+            local joker_name = v.config.card.name
             if string.sub(joker_name,1,6) == "j_Beat" then
                 money_amount = money_amount + 1
             end

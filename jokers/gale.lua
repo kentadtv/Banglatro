@@ -27,7 +27,7 @@ SMODS.Joker({
             'Copies the ability of a random joker'
         }
     },
-    calculate = function(self, center, context)
+    calculate = function(self, card, context)
         if context.joker_main then
             return {
                 sound = 'BeatBanger_sfx_gale_moan',

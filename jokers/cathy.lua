@@ -27,7 +27,7 @@ SMODS.Joker({
             'Does Nothing...'
         }
     },
-    calculate = function(self, center, context)
+    calculate = function(self, card, context)
         if context.joker_main then
             return {
                 message = "Oughh~!",

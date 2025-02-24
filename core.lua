@@ -8,19 +8,21 @@ if SMODS.Atlas then
 end
 
 local function import(file)
-    local chunk, err = SMODS.load_file(file, "BeatBanger")
-    if chunk then
-        local ok, func = pcall(chunk)
-        -- chunk()
+    local file_data, err = SMODS.load_file(file, "BeatBanger")
+    if file_data then
+        local ok, func = pcall(file_data)
     else
         print("Error loading Dawna Joker: " .. err)
     end
 end
 
 
-import('jokers/zoe.lua')
-import('jokers/dawna.lua')
-import('jokers/claire.lua')
-import('jokers/gale.lua')
+import('jokers/protag.lua')
 import('jokers/cathy.lua')
+import('jokers/zoe.lua')
+import('jokers/gale.lua')
+import('jokers/claire.lua')
+import('jokers/dawna.lua')
+import('jokers/makayla.lua')
+import('jokers/jasmine.lua')
 
