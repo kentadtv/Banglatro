@@ -1,6 +1,9 @@
+local util, err = SMODS.load_file('util.lua', "BeatBanger")
+
+
 SMODS.Atlas({
-	key = "j_zoe",
-	path = "j_zoe.png",
+	key = "joker_atlas",
+	path = "joker_atlas.png",
 	px = 71,
 	py = 95,
 })
@@ -12,14 +15,16 @@ SMODS.Sound({
 
 SMODS.Joker({
 	key = "j_zoe",
-	atlas = "j_zoe",
-	rarity = 3,
+	atlas = "joker_atlas",
+    pos = { x = 2, y = 0 },
+	rarity = 1,
 	cost = 8,
 	unlocked = true,
 	discovered = true,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = true,
+    in_pool = function(self, args) return true, {allow_duplicates = false} end,
     config = {
         extra = {
             Xmult = 1.5,
@@ -39,10 +44,9 @@ SMODS.Joker({
         if context.individual and context.cardarea == G.play then
             if context.other_card:get_id() == 8 then
                 return {
-                        card = card,
                         message = "BOING!",
                         sound = 'BeatBanger_sfx_boob',
-                        Color = G.C.MULT,
+                        colour = G.C.GREEN,
                         Xmult_mod = card.ability.extra.Xmult,
                 }
             end

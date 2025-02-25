@@ -1,6 +1,7 @@
 # Compiled Lua sources
 _working_files/
 _dev/
+_reference/
 
 luac.out
 

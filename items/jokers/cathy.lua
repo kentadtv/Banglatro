@@ -1,6 +1,6 @@
 SMODS.Atlas({
-	key = "j_cathy",
-	path = "j_cathy.png",
+	key = "joker_atlas",
+	path = "joker_atlas.png",
 	px = 71,
 	py = 95,
 })
@@ -12,14 +12,16 @@ SMODS.Sound({
 
 SMODS.Joker({
 	key = "j_cathy",
-	atlas = "j_cathy",
+	atlas = "joker_atlas",
+    pos = { x = 1, y = 0 },
 	rarity = 1,
-	cost = 8,
+	cost = 1,
 	unlocked = true,
 	discovered = true,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = true,
+    in_pool = function(self, args) return true, {allow_duplicates = false} end,
     loc_txt = {
         name = "Cathy the Cat",
         text = {
@@ -31,7 +33,6 @@ SMODS.Joker({
         if context.joker_main then
             return {
                 message = "Oughh~!",
-                Color = G.C.MULT,
                 sound = 'BeatBanger_sfx_cathy_moan',
             }
         end

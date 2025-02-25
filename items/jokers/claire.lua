@@ -1,5 +1,8 @@
+local data, err = SMODS.load_file('util.lua', "BeatBanger")
+local ok, util = pcall(data)
+
 SMODS.Atlas({
-	key = "j_beat_banger",
+	key = "joker_atlas",
 	path = "joker_atlas.png",
 	px = 71,
 	py = 95,
@@ -7,14 +10,15 @@ SMODS.Atlas({
 
 SMODS.Joker({
 	key = "j_claire",
-	atlas = "j_claire",
-	rarity = 2,
+	atlas = "joker_atlas",
+    pos = { x = 4, y = 0 },
+	rarity = 1,
 	cost = 8,
 	unlocked = true,
 	discovered = true,
-	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = true,
+    in_pool = function(self, args) return true, {allow_duplicates = false} end,
     config = {
         extra = {
             dollars = 0,
@@ -30,16 +34,8 @@ SMODS.Joker({
         }
     },
     update = function(self, card, dt)
-        if G.STAGE == G.STAGES.RUN then
-            if card.ability.name ~= "j_BeatBanger_j_claire" then return end
-            local dollars = 0
-            for k, v in pairs(G.jokers.cards) do
-                local joker_mod_id = v.config.center.mod.id
-                if joker_mod_id == "BeatBanger" then dollars = dollars + 1 end
-            end
-
-            card.ability.extra.dollars = dollars
-        end
+        if card.ability.name ~= "j_BeatBanger_j_claire" then return end
+        card.ability.extra.dollars = util.get_bb_joker_count(G.jokers.cards)
     end,
     loc_vars = function(self, info_queue, card)
         return {vars = {card.ability.extra.dollars}}

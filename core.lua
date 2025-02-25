@@ -16,13 +16,25 @@ local function import(file)
     end
 end
 
+-- Jokers
+import('items/jokers/protag.lua')
+import('items/jokers/cathy.lua')
+import('items/jokers/zoe.lua')
+import('items/jokers/gale.lua')
+import('items/jokers/claire.lua')
+import('items/jokers/dawna.lua')
+import('items/jokers/makayla.lua')
+import('items/jokers/jasmine.lua')
 
-import('jokers/protag.lua')
-import('jokers/cathy.lua')
-import('jokers/zoe.lua')
-import('jokers/gale.lua')
-import('jokers/claire.lua')
-import('jokers/dawna.lua')
-import('jokers/makayla.lua')
-import('jokers/jasmine.lua')
+-- Tags
+-- import('items/tags/tag_encore.lua')
+
+-- Vouchers
+import('items/vouchers/voucher_bunfan.lua')
+
+-- Blinds
+-- import('blinds/blind_beatbang.lua')
+
+-- Decks
+import('items/decks/deck_bunfan.lua')
 

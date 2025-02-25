@@ -1,6 +1,6 @@
 SMODS.Atlas({
-	key = "j_makayla",
-	path = "j_makayla.png",
+	key = "joker_atlas",
+	path = "joker_atlas.png",
 	px = 71,
 	py = 95,
 })
@@ -12,7 +12,8 @@ SMODS.Atlas({
 
 SMODS.Joker({
 	key = "j_makayla",
-	atlas = "j_makayla",
+	atlas = "joker_atlas",
+    pos = { x = 1, y = 1 },
 	rarity = 1,
 	cost = 8,
 	unlocked = true,
@@ -20,6 +21,7 @@ SMODS.Joker({
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = true,
+    in_pool = function(self, args) return true, {allow_duplicates = false} end,
     loc_txt = {
         name = "Makayla",
         text = {

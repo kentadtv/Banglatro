@@ -1,5 +1,5 @@
 SMODS.Atlas({
-	key = "j_beat_banger",
+	key = "joker_atlas",
 	path = "joker_atlas.png",
 	px = 71,
 	py = 95,
@@ -14,7 +14,8 @@ end
 
 SMODS.Joker({
 	key = "j_jasmine",
-	atlas = "j_jasmine",
+	atlas = "joker_atlas",
+    pos = { x = 0, y = 1 },
 	rarity = 1,
 	cost = 8,
 	unlocked = true,
@@ -22,6 +23,7 @@ SMODS.Joker({
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = true,
+    in_pool = function(self, args) return true, {allow_duplicates = false} end,
     config = {
         extra = {
             Xmult = 1,
