@@ -35,6 +35,9 @@ import('items/vouchers/voucher_bunfan.lua')
 -- Blinds
 -- import('blinds/blind_beatbang.lua')
 
+-- Boosters
+import('items/boosters/booster_zoe.lua')
+
 -- Decks
 import('items/decks/deck_bunfan.lua')
 
